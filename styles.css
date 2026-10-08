@@ -1,0 +1,365 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --White: hsl(0, 100%, 100%);
+    --Grey500: hsl(0, 0%, 63%);
+    --Grey800: hsl(0, 0%, 27%);
+    --Black: hsl(0, 0%, 0%);
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+}
+
+
+.parent{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars */
+}
+
+.parent,
+.parent2,
+.parent3 {
+  display: none;
+}
+
+.parent.active,
+.parent2.active,
+.parent3.active {
+  display: grid;
+}
+
+.parent2,
+.parent3 {
+    display: none;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-template-rows: repeat(2, 1fr);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars */
+}
+
+.box1,
+.box2,
+.box3,
+.box4,
+.box5 {
+    width: 100%;
+    height: 100%;
+}
+
+.box1 {
+    grid-column: 1 / 3; /* Row 1: Columns 1 & 2 */
+}
+
+.box1 img {
+    width: 100%;
+    height: 100%;
+}
+
+.box2 {
+    background-color: var(--White);
+    grid-column: 3 / 5; /* Row 1: Columns 3 & 4 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;  
+    justify-content: center; 
+    padding: 2rem;         
+    position: relative;
+}
+
+.text1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Keeps text left-aligned inside its reading box */
+    max-width: 500px;    
+    width: 100%;
+}
+.text1 p {
+    margin-top: 2rem;
+    line-height: 35px;
+    font-size: 20px;
+    color: var(--Grey500);
+}
+
+.title {
+    font-size: 55px;
+}
+
+.box2 button {
+    font-size: 25px;
+    border: none;
+    background-color: transparent;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+.box2 button:hover {
+    color: var(--Grey500);
+}
+
+.carousel-btn-left, 
+.carousel-btn-right {
+    background-color: var(--Black);
+    padding: 1.5rem;
+    position: absolute;
+    cursor: pointer;
+}
+
+.carousel-btn-left:hover, 
+.carousel-btn-right:hover {
+    background-color: var(--Grey500);
+}
+
+.carousel-btn-left {
+    bottom: 0;
+    left: 0;
+}
+
+.carousel-btn-right {
+    bottom: 0;
+    left: 62px;
+}
+
+.box3 {
+    grid-column: 1 / 2; /* Row 2: Column 1 */
+}
+
+.box3 img {
+    width: 100%;
+    height: 100%;
+}
+
+.box4 {
+    background-color: var(--White);
+    grid-column: 2 / 4; /* Row 2: Columns 2 & 3 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+    padding: 2rem;          
+    position: relative;
+}
+
+.text2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    max-width: 600px;        
+    width: 100%;
+    margin-top: 2rem;
+    line-height: 35px;
+    font-size: 20px;
+     color: var(--Grey500);
+}
+
+.title2 {
+    font-size: 50px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    color: var(--Black);
+}
+
+
+.box5 {
+    grid-column: 4 / 5; /* Row 2: Column 4 */
+}
+
+.box5 img {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-bar {
+    position: absolute;
+    display: flex;
+    padding: 2rem;
+}
+
+.nav-bar ul {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-bar img {
+    margin-right: 2rem;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: var(--White);
+}
+
+.nav-bar a:hover {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+.hamburger-btn {
+        display: none;
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 25;
+    }
+
+.close-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+@media screen and (max-width: 750px) {
+
+    /* 1. Main Container Layout */
+    .parent.active,
+    .parent2.active, 
+    .parent3.active {
+       display: flex;
+       flex-direction: column;
+       overflow-x: hidden;
+       overflow-y: visible;
+    }
+
+    .box2 {
+       position: relative;
+    }
+
+    /* 2. Top-Right Fixed Carousel Buttons */
+    .carousel-btn-left,
+    .carousel-btn-right {
+        position: absolute;
+        top: -76px;
+        height: 76px;
+        width: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000000;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .carousel-btn-right {
+        right: 0;
+    }
+
+    .carousel-btn-left {
+        right: 76px; 
+    }
+
+    /* 3. Header & Centered Logo */
+    .nav-bar {
+        padding: 3rem 1.5rem;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 20;
+    }
+
+    .hamburger-btn {
+        display: block;
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 25;
+    }
+
+    .logo-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    /* 4. Left Slide-In Nav Menu */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;           
+        height: 110px;            
+        background-color: var(--White);  
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+        z-index: 100;
+
+        /* Slide animation from LEFT */
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-menu.open {
+        transform: translateX(0);   /* Slides into view from left */
+    }
+
+    .close-btn {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-menu a {
+        color: var(--Black);
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: lowercase;
+    }
+
+    /* 5. Dark Overlay Backdrop */
+    .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
